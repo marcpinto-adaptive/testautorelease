@@ -40,11 +40,11 @@ jobs:
 
       - name: Commit New Tag
         run: |
-          git commit -am "1.1.2 released."
-          git tag 1.1.2
-          git push origin 1.1.2
+          git commit -am "1.1.3 released."
+          git tag 1.1.3
+          git push origin 1.1.3
           
           echo 'Bye' > version.txt
           git commit -am "post release bump"
-          git push origin main
+          git push origin
           
