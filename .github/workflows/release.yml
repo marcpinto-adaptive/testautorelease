@@ -3,13 +3,12 @@ name: Gradle Package
 on:
   workflow_dispatch:
 
+permissions: write-all
+
 jobs:
   build:
 
     runs-on: [self-hosted]
-    permissions:
-      contents: write
-      packages: write
 
     steps:
       - name: checkout
@@ -41,8 +40,9 @@ jobs:
 
       - name: Commit New Tag
         run: |
-          git commit -am "v1 released." && git tag v1
+          git commit -am "1.1.1 released."
+          git tag 1.1.1
           echo 'Bye' > version.txt
           git commit -am "post release bump"
-          git push --atomic origin master v1
+          git push origin main 1.1.1
           
