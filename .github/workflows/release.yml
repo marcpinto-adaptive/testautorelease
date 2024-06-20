@@ -2,6 +2,15 @@ name: Gradle Package
 
 on:
   workflow_dispatch:
+    inputs:
+      tag:
+        description: Release Tag
+        required: true
+        type: string
+      snapshot-tag:
+        description: Release Tag
+        required: true
+        type: string
 
 permissions: write-all
 
@@ -18,7 +27,7 @@ jobs:
 
       - name: update-version
         run: |
-          echo 'Hi' > version.txt
+          echo ${{ inputs.tag }} > version.txt
 
       - name: Setup BUILD_JAVA_HOME & BUILD_JAVA_VERSION
         run: |
@@ -40,11 +49,11 @@ jobs:
 
       - name: Commit New Tag
         run: |
-          git commit -am "1.1.4 released."
-          git tag 1.1.4
-          git push origin 1.1.4
+          git commit -am "${{ inputs.tag }} released."
+          git tag ${{ inputs.tag }}
+          git push origin ${{ inputs.tag }}
           
-          echo 'Bye' > version.txt
+          echo ${{ inputs.snapshot-tag }} > version.txt
           git commit -am "post release bump"
           git push origin HEAD:main
           
