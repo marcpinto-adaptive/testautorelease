@@ -36,10 +36,11 @@ publishing {
 
     repositories {
         maven {
-            url = 'localhost:8081/artifactory/test-generic-local'
+            url = 'http://localhost:8081/artifactory/test-maven-repo'
+            allowInsecureProtocol = true
             credentials {
                 username = 'admin'
-                password = 'Test1234!'
+                password = 'password'
             }
         }
     }
