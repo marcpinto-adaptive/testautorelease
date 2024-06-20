@@ -11,6 +11,11 @@ on:
         description: New Version
         required: true
         type: string
+      release:
+        description: Is release?
+        required: true
+        default: false
+        type: boolean
 
 jobs:
   build:
@@ -28,6 +33,7 @@ jobs:
           ref: ${{ github.sha }}
 
       - name: update-version
+        if: ${{ inputs.release }}
         run: |
           echo ${{ inputs.tag }} > version.txt
 
@@ -50,6 +56,7 @@ jobs:
         run: ./gradlew publish --no-daemon
 
       - name: Commit New Tag
+        if: ${{ inputs.release }}
         run: |
           git commit -am "${{ inputs.tag }} released."
           git tag ${{ inputs.tag }}
