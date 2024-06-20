@@ -4,10 +4,10 @@ plugins {
     id 'signing'
 }
 
-group = 'org.example'
-version = '1.0-SNAPSHOT'
+def textVersion = file('version.txt').text.trim()
 
-def version = file('version.txt').text.trim()
+group = 'org.example'
+version = textVersion
 
 repositories {
     mavenCentral()
@@ -49,7 +49,7 @@ publishing {
 }
 
 tasks.register('loggingTask') {
-        println version
+        println textVersion
 }
 
 compileJava {

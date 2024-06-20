@@ -4,11 +4,11 @@ on:
   workflow_dispatch:
     inputs:
       tag:
-        description: Release Tag
+        description: Release Version
         required: true
         type: string
       snapshot-tag:
-        description: Release Tag
+        description: New Version
         required: true
         type: string
 
