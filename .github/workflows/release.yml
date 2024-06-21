@@ -50,6 +50,8 @@ jobs:
       contents: write
       packages: write
 
+    needs: tag-release
+
     runs-on: [self-hosted]
 
     steps:
@@ -84,8 +86,9 @@ jobs:
   update-tags:
 
     permissions:
-      contents: read
-      packages: write
+      contents: write
+
+    needs: build
 
     runs-on: [ self-hosted ]
 
